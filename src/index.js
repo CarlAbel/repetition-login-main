@@ -7,8 +7,10 @@ import TokenProvider from './components/TokenProvider';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
+import "./index.css"
 
 const router = createBrowserRouter([
+  
   {
     path: "/",
     element: <Layout/>,
@@ -30,6 +32,7 @@ const router = createBrowserRouter([
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
     <TokenProvider>
