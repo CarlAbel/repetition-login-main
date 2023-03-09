@@ -5,7 +5,7 @@ import useAxios from '../hooks/useAxios'
 export default function PopularClass() {
     const { data, loading, error } = useAxios(
         {
-         url: "http://localhost:4000/api/v1/classes"
+         url: "https://test-trainer-api.onrender.com/api/v1/classes"
         }
     )
     const [selectedData, setSelectedData] = useState(null)
