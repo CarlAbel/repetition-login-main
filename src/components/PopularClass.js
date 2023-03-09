@@ -37,10 +37,5 @@ export default function PopularClass() {
             )}
         </div>}
     </div>
-
-
-
-
-
   )
 }
