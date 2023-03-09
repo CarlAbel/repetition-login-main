@@ -7,7 +7,7 @@ import "slick-carousel/slick/slick-theme.css"
 export default function ClassesForYou() {
     const { data, loading, error } = useAxios(
         {
-         url: "http://localhost:4000/api/v1/classes"
+         url: "https://test-trainer-api.onrender.com/api/v1/classes"
         }
     )
   const navigate = useNavigate()
