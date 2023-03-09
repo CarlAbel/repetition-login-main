@@ -68,3 +68,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<Hamburger toggled={isMenuOpen} toggle={setIsMenuOpen} className="text-gray-500 hover:text-white focus:outline-none focus:text-white absolute right-4 mt-4" />

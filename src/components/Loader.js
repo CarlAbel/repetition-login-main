@@ -1,23 +1,19 @@
-import { css } from "@emotion/core"
-import { ClipLoader } from "react-spinners"
 
-export default function Loader() {
-    const [isLoading, setIsLoading] = useState(false)
+import { css } from '@emotion/react';
+import { PropagateLoader } from 'react-spinners';
 
-    const override = css`
+const override = css`
   display: block;
   margin: 0 auto;
   border-color: red;
-  
 `;
 
+export default function Loader() {
   return (
-    <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" disabled={isLoading}>
-  {isLoading ? (
-    <ClipLoader color={"#ffffff"} loading={isLoading} css={override} size={15} />
-  ) : (
-    "Log in"
-  )}
-</button>
-  )
+    <div className="sweet-loading">
+      <PacmanLoader css={override} size={25} color={'#123abc'} loading={true} />
+      <div>Loading...</div>
+    </div>
+  );
 }
+

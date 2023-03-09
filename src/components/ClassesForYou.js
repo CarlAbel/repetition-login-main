@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import { PropagateLoader } from 'react-spinners';
 
 export default function ClassesForYou() {
     const { data, loading, error } = useAxios(
@@ -23,7 +24,7 @@ export default function ClassesForYou() {
   return (
     <div className="pb-3">
         <pre>{error}</pre>
-        {loading ? <p>Loading...</p> : <Slider {...settings}>
+        {loading ? <PropagateLoader className="text-center" color="#36d7b7" /> : <Slider {...settings}>
         {data &&
           data.map((item) => (
             <div

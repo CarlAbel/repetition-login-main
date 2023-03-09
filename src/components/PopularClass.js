@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import useAxios from '../hooks/useAxios'
+import { PropagateLoader } from 'react-spinners';
 
 export default function PopularClass() {
     const { data, loading, error } = useAxios(
@@ -19,7 +20,7 @@ export default function PopularClass() {
     
     <div className="pb-3">
         <pre>{error}</pre>
-        {loading ? <p>Loading...</p> : <div>
+        {loading ? <PropagateLoader className="text-center" color="#36d7b7" /> : <div>
             {selectedData && (
                 <div
                 onClick={() => navigate(`/classDetails/${selectedData?.id}`)}
