@@ -24,8 +24,12 @@ const router = createBrowserRouter([
         element: <Login/>
       },
       {
-        path: "profile",
+        path: "/profile",
         element: <ProtectedRoute><Profile/></ProtectedRoute>,
+      },
+      {
+        path: "/classDetails/:id",
+        element: <ProtectedRoute><ClassDetails/></ProtectedRoute>,
       }
     ]
   }
