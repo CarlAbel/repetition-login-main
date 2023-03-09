@@ -4,19 +4,28 @@ import { TokenContext } from "../components/TokenProvider"
 import { useNavigate } from "react-router-dom"
 import useCookie from "react-use-cookie"
 import { useForm } from "react-hook-form"
+import { css } from "@emotion/core"
+import ClipLoader from "react-spinners/ClipLoader";
 
 export default function Login() {
   const [isLoading, setIsLoading] = useState(false)
+  
   const [, setTokenCookie] = useCookie("trainer-cookie", undefined)
   const { token, setToken } = useContext(TokenContext)
   const navigate = useNavigate()
   const { register, handleSubmit, formState: { errors } } = useForm()
 
+  const override = css`
+			display: block;
+			margin: 0 auto;
+			border-color: red;`
+			;
+
   async function onSubmit(data) {
     setIsLoading(true)
 
     try {
-      const response = await axios.post("https://test-trainer-api.onrender.com/auth/token", {
+      const response = await axios.post("http://test-trainer-api.onrender.com/auth/token", {
         username: data.username,
         password: data.password
       })
@@ -64,8 +73,12 @@ export default function Login() {
           Remember me
         </label>
         <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" disabled={isLoading}>
-          {isLoading ? "Loading..." : "Log in"}
-        </button>
+			{isLoading ? (
+				<ClipLoader color={"#ffffff"} loading={isLoading} css={override} size={15} />
+			) : (
+				"Log in"
+			)}
+		</button>
       </form>
     </>
   )
