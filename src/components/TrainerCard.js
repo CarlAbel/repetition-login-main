@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import useAxios from "../hooks/useAxios"
+import { PropagateLoader } from 'react-spinners';
 
 export default function TrainerCard() {
   const { id } = useParams()
   const [ trainersData, setTrainersData] = useState(null)
-  const { data } = useAxios(
+  const { data, error } = useAxios(
     {
      url: `https://test-trainer-api.onrender.com/api/v1/classes/${id}`
     }
@@ -23,7 +24,7 @@ export default function TrainerCard() {
     
 
   if (!data) {
-    return <div>Loading...</div>
+    return <PropagateLoader className="text-center" color="#36d7b7" /> 
   }
 
   const { className, trainer } = data
@@ -31,6 +32,7 @@ export default function TrainerCard() {
 
   return (
     <div className="flex w-64 rounded-lg overflow-hidden">
+      <pre>{error}</pre>
       <img
         src={trainersData?.asset?.url}
         alt={className}
