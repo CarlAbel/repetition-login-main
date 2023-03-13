@@ -6,7 +6,7 @@ export default function ClassDetailsCard() {
   const { id } = useParams()
   const [ratingsData, setRatingsData] = useState(null)
 
-  const { data, loading, error } = useAxios(
+  const { data } = useAxios(
         {
          url: `https://test-trainer-api.onrender.com/api/v1/classes/${id}`
         }
@@ -31,9 +31,9 @@ export default function ClassDetailsCard() {
   const { className, asset, classDescription } = data
 
   const ratingsCount = ratingsData?.length || 0
-  const totalStars =
-    ratingsData?.reduce((sum, { rating }) => sum + rating, 0) || 0
-  const averageRating = ratingsCount > 0 ? totalStars / ratingsCount : 0
+  // const totalStars =
+  //   ratingsData?.reduce((sum, { rating }) => sum + rating, 0) || 0
+  // const averageRating = ratingsCount > 0 ? totalStars / ratingsCount : 0
 
   return (
     <>

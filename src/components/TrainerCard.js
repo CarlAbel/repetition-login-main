@@ -5,7 +5,7 @@ import useAxios from "../hooks/useAxios"
 export default function TrainerCard() {
   const { id } = useParams()
   const [ trainersData, setTrainersData] = useState(null)
-  const { data, loading, error } = useAxios(
+  const { data } = useAxios(
     {
      url: `https://test-trainer-api.onrender.com/api/v1/classes/${id}`
     }
