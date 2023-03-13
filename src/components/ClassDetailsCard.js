@@ -7,11 +7,13 @@ export default function ClassDetailsCard() {
   const { id } = useParams()
   const [ratingsData, setRatingsData] = useState(null)
 
+  //custom hook
   const { data, error } = useAxios(
         {
          url: `https://test-trainer-api.onrender.com/api/v1/classes/${id}`
         }
     )
+  
   useEffect(() => {
     const fetchRatings = async () => {
       const ratingsResponse = await fetch(
