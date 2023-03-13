@@ -1,12 +1,15 @@
 import { useParams } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import useAxios from "../hooks/useAxios"
 import { PropagateLoader } from 'react-spinners';
+import { TokenContext } from "../components/TokenProvider"
+import axios from "axios"
 
 export default function ClassDetailsCard() {
   const { id } = useParams()
   const [ratingsData, setRatingsData] = useState(null)
-
+  const [isSignedUp, setIsSignedUp] = useState(false);
+  const { token } = useContext(TokenContext)
   //custom hook
   const { data, error } = useAxios(
         {
@@ -24,6 +27,10 @@ export default function ClassDetailsCard() {
     }
     fetchRatings()
   }, [id])
+  const ratingsCount = ratingsData?.length || 0
+  // const totalStars =
+  //   ratingsData?.reduce((sum, { rating }) => sum + rating, 0) || 0
+  // const averageRating = ratingsCount > 0 ? totalStars / ratingsCount : 0
   
   if (!data) {
     return <PropagateLoader className="text-center" color="#36d7b7" />
@@ -31,11 +38,22 @@ export default function ClassDetailsCard() {
 
   const { className, asset, classDescription } = data
 
-  const ratingsCount = ratingsData?.length || 0
-  // const totalStars =
-  //   ratingsData?.reduce((sum, { rating }) => sum + rating, 0) || 0
-  // const averageRating = ratingsCount > 0 ? totalStars / ratingsCount : 0
-
+  async function handleSignUp() {
+    try {
+      const response = await axios.post(
+        `https://test-trainer-api.onrender.com/api/v1/users/${token.userId}/classes/${id}`,
+        undefined,
+        {
+          headers: {
+            authorization: "Bearer " + token.token,
+          },
+        }
+      );
+      setIsSignedUp(true);
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <>
     <div className="pb-3">
@@ -47,11 +65,18 @@ export default function ClassDetailsCard() {
               className="absolute z-0 h-[32rem] w-full object-cover shadow-md 
               rounded-lg"
             />
-            <input
-              className="bg-white text-[26px] absolute right-0 px-6 py-3 bottom-6 rounded-l-xl"
-              type="submit"
-              value="Sign up"
-            />
+            {isSignedUp ? (
+          <span className="bg-gray-300 text-gray-700 px-6 py-3 bottom-6 rounded-l-xl">
+            Signed up
+          </span>
+        ) : (
+          <input
+            className="bg-white text-[26px] absolute right-0 px-6 py-3 bottom-6 rounded-l-xl"
+            type="submit"
+            value="Sign up"
+            onClick={handleSignUp}
+          />
+        )}
             <div className="absolute bottom-8 ml-6">
               {ratingsCount > 0 && <div className="flex"></div>}
               {ratingsData?.map((rating) => (
