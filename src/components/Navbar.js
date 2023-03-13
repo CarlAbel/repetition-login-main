@@ -66,7 +66,7 @@ export default function Navbar() {
                 </div>
                 </div>
                 <div className="text-gray-500 hover:text-white focus:outline-none focus:text-white absolute right-4 mt-2 "  >
-                    <Hamburger toggled={isMenuOpen} toggle={setIsMenuOpen} />
+                    <Hamburger className="md:hidden" toggled={isMenuOpen} toggle={setIsMenuOpen} />
                 </div>
                 
             {isMenuOpen && (
