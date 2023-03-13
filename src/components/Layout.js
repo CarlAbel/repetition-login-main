@@ -17,7 +17,7 @@ export default function Layout() {
       <header className="bg-gray-800">
         <Navbar />
       </header>
-      <main className="mt-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Outlet />
       </main>
     </>
