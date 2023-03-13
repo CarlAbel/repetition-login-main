@@ -1,15 +1,14 @@
 import { useParams } from "react-router-dom"
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import useAxios from "../hooks/useAxios"
 import { PropagateLoader } from 'react-spinners';
-import { TokenContext } from "../components/TokenProvider"
-import axios from "axios"
+import HandleSignUpBtn from "./HandleSignUpBtn";
+
 
 export default function ClassDetailsCard() {
   const { id } = useParams()
   const [ratingsData, setRatingsData] = useState(null)
-  const [isSignedUp, setIsSignedUp] = useState(false);
-  const { token } = useContext(TokenContext)
+
   //custom hook
   const { data, error } = useAxios(
         {
@@ -38,22 +37,7 @@ export default function ClassDetailsCard() {
 
   const { className, asset, classDescription } = data
 
-  async function handleSignUp() {
-    try {
-      const response = await axios.post(
-        `https://test-trainer-api.onrender.com/api/v1/users/${token.userId}/classes/${id}`,
-        undefined,
-        {
-          headers: {
-            authorization: "Bearer " + token.token,
-          },
-        }
-      );
-      setIsSignedUp(true);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  
   return (
     <>
     <div className="pb-3">
@@ -65,18 +49,7 @@ export default function ClassDetailsCard() {
               className="absolute z-0 h-[32rem] w-full object-cover shadow-md 
               rounded-lg"
             />
-            {isSignedUp ? (
-          <span className="bg-gray-300 text-gray-700 px-6 py-3 bottom-6 rounded-l-xl">
-            Signed up
-          </span>
-        ) : (
-          <input
-            className="bg-white text-[26px] absolute right-0 px-6 py-3 bottom-6 rounded-l-xl"
-            type="submit"
-            value="Sign up"
-            onClick={handleSignUp}
-          />
-        )}
+            <HandleSignUpBtn />
             <div className="absolute bottom-8 ml-6">
               {ratingsCount > 0 && <div className="flex"></div>}
               {ratingsData?.map((rating) => (

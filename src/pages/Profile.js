@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaUserCircle } from 'react-icons/fa';
-import Toastify from '../components/Toastify';
+
 
 export default function Profile() {
   return (
@@ -44,7 +44,6 @@ export default function Profile() {
               </div>
             </div>
           </div>
-		  <Toastify />
         </div>
       </div>
     </div>
