@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import "./index.css"
 import ClassDetails from './pages/ClassDetails';
+import MyClasses from './pages/MyClasses';
 
 const router = createBrowserRouter([
   
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/classDetails/:id",
         element: <ProtectedRoute><ClassDetails/></ProtectedRoute>,
+      },
+      {
+        path: "/myClasses",
+        element: <ProtectedRoute><MyClasses /></ProtectedRoute>,
       }
     ]
   }

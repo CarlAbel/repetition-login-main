@@ -46,6 +46,13 @@ export default function Navbar() {
                     >
                         Profile
                     </NavLink>
+                    <NavLink
+                        to="/myClasses"
+                        className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                        activeClassName="bg-gray-900 text-white"
+                    >
+                        My Classes
+                    </NavLink>
                     {token ? (
                         <button
                         onClick={handleLogout}
