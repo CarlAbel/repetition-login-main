@@ -65,10 +65,9 @@ export default function Navbar() {
                     </div>
                 </div>
                 </div>
-                <div className="text-gray-500 hover:text-white focus:outline-none focus:text-white absolute right-4 mt-2 "  >
-                    <Hamburger className="md:hidden" toggled={isMenuOpen} toggle={setIsMenuOpen} />
+                <div className="text-gray-500 hover:text-white focus:outline-none focus:text-white absolute right-4 mt-2 md:hidden"  >
+                    <Hamburger toggled={isMenuOpen} toggle={setIsMenuOpen} />
                 </div>
-                
             {isMenuOpen && (
                 <div className="md:hidden">
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
